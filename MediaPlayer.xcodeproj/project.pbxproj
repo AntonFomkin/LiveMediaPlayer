@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC419D1924101FDC0031AC12 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC419D1824101FDC0031AC12 /* Factory.swift */; };
 		EC4549252407C8C5009AB76B /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4549242407C8C5009AB76B /* MediaPlayer.swift */; };
 		EC45492A2407CFCF009AB76B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4549292407CFCF009AB76B /* Protocols.swift */; };
 		EC6022AB2407FBA500DAAB3F /* OtherExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6022AA2407FBA500DAAB3F /* OtherExtension.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC419D1824101FDC0031AC12 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		EC4549242407C8C5009AB76B /* MediaPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayer.swift; sourceTree = "<group>"; };
 		EC4549292407CFCF009AB76B /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		EC6022AA2407FBA500DAAB3F /* OtherExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherExtension.swift; sourceTree = "<group>"; };
@@ -57,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC419D1724101FC30031AC12 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				EC419D1824101FDC0031AC12 /* Factory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
 		EC4549262407CB57009AB76B /* AppStartManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				EC4549292407CFCF009AB76B /* Protocols.swift */,
+				ECB307BE2406FDB300F52A05 /* DataLinks */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -108,6 +119,7 @@
 		EC652A7C2404291A0034239C /* MediaPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				EC419D1724101FC30031AC12 /* Factory */,
 				ECB307BD2406F5F900F52A05 /* View */,
 				ECB307BC2406F5E900F52A05 /* Core */,
 				EC82FD2824058E79005EC6BA /* Fonts */,
@@ -170,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				EC4549282407CFBA009AB76B /* Protocols */,
-				ECB307BE2406FDB300F52A05 /* DataLinks */,
 				EC652A94240429C10034239C /* AppDelegate */,
 			);
 			path = Core;
@@ -270,6 +281,7 @@
 				EC6022AB2407FBA500DAAB3F /* OtherExtension.swift in Sources */,
 				EC652A9924042ADD0034239C /* MediaPlayerVC.swift in Sources */,
 				EC45492A2407CFCF009AB76B /* Protocols.swift in Sources */,
+				EC419D1924101FDC0031AC12 /* Factory.swift in Sources */,
 				EC652A7E2404291A0034239C /* AppDelegate.swift in Sources */,
 				EC82FD2E240592C8005EC6BA /* ExtensionUI.swift in Sources */,
 				ECB307C02406FDD800F52A05 /* DataLinks.swift in Sources */,

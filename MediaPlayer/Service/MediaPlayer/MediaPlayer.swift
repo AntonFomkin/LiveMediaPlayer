@@ -19,16 +19,45 @@ final class MediaPlayer: AudioPlayer {
             progressTimer?.invalidate()
         }
     }
-   
+    
+    
     var progressUpdate: ((_ currentValue: Float) -> ())?
     var progressEndUpdate: (() -> ())?
     var messageContainerUpdate: ((_ visible: Bool) -> ())?
     var labelTimePlayStartUpdate: ((_ value: String) -> ())?
-    var labelTimePlayEndUpdate: ((_ value: String) -> ())?
+    var labelTimePlayEndUpdate: ((_ value: String) -> ())? 
     
     var player: AVPlayer?
     var playerItem: AVPlayerItem?
-
+    let seconds: Int64 = 15
+    let timeScale: Int32 = 1
+    
+    // MARK: Rewind media
+    func rewind (type: RewindType) -> () {
+        if let player = self.player {
+            if let playerItem = self.playerItem {
+                
+                let rewindValue : CMTime = CMTimeMake(value: seconds, timescale: timeScale)
+                
+                switch type {
+                case .left:
+                    
+                    if player.currentTime() - rewindValue > CMTime.zero {
+                        player.seek(to: player.currentTime() - rewindValue)
+                    } else {
+                        player.seek(to: playerItem.duration)
+                    }
+                    
+                case .right :
+                    if player.currentTime() + rewindValue < playerItem.duration {
+                        player.seek(to: player.currentTime() + rewindValue)
+                    } else {
+                        player.seek(to: playerItem.duration)
+                    }
+                }
+            }
+        }
+    }
     
     // MARK: MediaPlayer init
     func playMedia(url: String) {
@@ -65,10 +94,11 @@ final class MediaPlayer: AudioPlayer {
         }
     }
     
+    
     // MARK: Play Time Ended
     @objc func playerItemPlayToEndTime() {
         stopProgressTimer()
-        self.progressEndUpdate!()
+        self.progressEndUpdate?()
         
         if let player = self.player {
             player.replaceCurrentItem(with: playerItem)
@@ -85,7 +115,7 @@ final class MediaPlayer: AudioPlayer {
     
     // MARK: Start Timer
     func startProgressTimer() {
-        progressTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateProgressTimer), userInfo: nil, repeats: true)
+        progressTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.updateProgressTimer), userInfo: nil, repeats: true)
     }
     
     // MARK: Progress Timer and buffering
@@ -98,15 +128,15 @@ final class MediaPlayer: AudioPlayer {
                     let currentTime = Float(CMTimeGetSeconds(player.currentTime()))
                     let durationTime = Float(CMTimeGetSeconds(playerItem.duration))
                     
-                    self?.messageContainerUpdate!(false)
+                    self?.messageContainerUpdate?(false)
                     
                     switch player.status {
                     case .readyToPlay:
                         if playerItem.isPlaybackLikelyToKeepUp {
-                            self?.messageContainerUpdate!(true)
-                            self?.progressUpdate!(currentTime / durationTime)
-                            self?.labelTimePlayStartUpdate!(player.currentTime().stringValue)
-                            self?.labelTimePlayEndUpdate!(playerItem.duration.stringValue)
+                            self?.messageContainerUpdate?(true)
+                            self?.progressUpdate?(currentTime / durationTime)
+                            self?.labelTimePlayStartUpdate?(player.currentTime().stringValue)
+                            self?.labelTimePlayEndUpdate?(playerItem.duration.stringValue)
                             
                             print("Playing ")
                             

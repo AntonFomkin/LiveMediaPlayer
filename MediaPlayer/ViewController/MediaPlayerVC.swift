@@ -9,11 +9,16 @@
 import UIKit
 import AVFoundation
 
+
 final class MediaPlayerVC: UIViewController {
     
     private(set) lazy var zeroTime: String = {
         return "00:00"
     }()
+    
+    let playButtonName = "Polygon1.png"
+    let pauseButtonName = "filled.png"
+    
     
     private(set) lazy var mainView: UIView = {
         let mainView = UIView()
@@ -34,7 +39,7 @@ final class MediaPlayerVC: UIViewController {
     private(set) lazy var nameTrack: UILabel = {
         let nameTrack = UILabel()
         nameTrack.translatesAutoresizingMaskIntoConstraints = false
-        nameTrack.text = "Monkey and the Bull"
+        nameTrack.text = "ELLIE GOULDING"
         nameTrack.textAlignment = .center
         nameTrack.textColor = UIColor.mp_nameTrack
         nameTrack.font = UIFont(name: "Montserrat-Bold", size: 28)
@@ -47,7 +52,7 @@ final class MediaPlayerVC: UIViewController {
     private(set) lazy var nameArtist: UILabel = {
         let nameArtist = UILabel()
         nameArtist.translatesAutoresizingMaskIntoConstraints = false
-        nameArtist.text = "Thought Wars"
+        nameArtist.text = "HATE ME"
         nameArtist.textAlignment = .center
         nameArtist.textColor = UIColor.mp_nameArtist
         nameArtist.font = UIFont(name: "Montserrat-Medium", size: 14)
@@ -60,7 +65,7 @@ final class MediaPlayerVC: UIViewController {
     private(set) lazy var playButton: UIButton = {
         let playButton = UIButton(type: .system)
         playButton.translatesAutoresizingMaskIntoConstraints = false
-        playButton.setImage(UIImage(named: "Polygon 1.png")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        playButton.setImage(UIImage(named: playButtonName)?.withRenderingMode(.alwaysOriginal), for: .normal)
         playButton.tag = 1
         playButton.layer.cornerRadius = 3.0
         
@@ -72,16 +77,7 @@ final class MediaPlayerVC: UIViewController {
         rewindLeftButton.alpha = 0.7
         rewindLeftButton.translatesAutoresizingMaskIntoConstraints = false
         rewindLeftButton.setImage(UIImage(named: "backArrow.png")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        
-        /*
-         rewindLeftButton.setTitle("15", for: .normal)
-         rewindLeftButton.titleLabel?.font =  UIFont(name: "Montserrat-Medium", size: 12)
-         rewindLeftButton.titleLabel?.textAlignment = .center
-         rewindLeftButton.titleLabel?.setCharacterSpacing(-0.14)
-         rewindLeftButton.titleLabel?.textColor = UIColor.mp_nameTrack
-         rewindLeftButton.imageView?.contentMode = .scaleAspectFill
-         rewindLeftButton.imageView?.clipsToBounds = true
-         */
+
         return rewindLeftButton
     }()
     
@@ -90,22 +86,14 @@ final class MediaPlayerVC: UIViewController {
         rewindRightButton.alpha = 0.7
         rewindRightButton.translatesAutoresizingMaskIntoConstraints = false
         rewindRightButton.setImage(UIImage(named: "group10.png")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        /*
-         rewindRightButton.setTitle("15", for: .normal)
-         rewindRightButton.titleLabel?.font =  UIFont(name: "Montserrat-Medium", size: 12)
-         rewindRightButton.titleLabel?.textAlignment = .center
-         rewindRightButton.titleLabel?.setCharacterSpacing(-0.14)
-         rewindRightButton.titleLabel?.textColor = UIColor.mp_nameTrack
-         rewindRightButton.imageView?.contentMode = .scaleAspectFill
-         rewindRightButton.imageView?.clipsToBounds = true
-         */
+
         return rewindRightButton
     }()
     
     private(set) lazy var progressTrack: UIProgressView = {
         let progressTrack = UIProgressView()
         progressTrack.translatesAutoresizingMaskIntoConstraints = false
-        progressTrack.progressTintColor = UIColor.mp_backVC
+        progressTrack.progressTintColor = UIColor.mp_messageColor
         progressTrack.progress = 0.0
         progressTrack.layer.backgroundColor = UIColor.white.cgColor 
         progressTrack.layer.cornerRadius = 2.0
@@ -183,19 +171,26 @@ final class MediaPlayerVC: UIViewController {
         return tabButtonRight
     }()
     
+
     
-    private(set) lazy var mediaPlayer: MediaPlayer = {
-        return MediaPlayer()
-    }()
- 
+    var mediaPlayer: AudioPlayer
+    
+    init(mediaPlayer: AudioPlayer) {
+        self.mediaPlayer = mediaPlayer
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.mp_backVC
+        self.view.backgroundColor = UIColor.mp_messageColor
         
         // MARK: Configure UI & Events & Closure
         configureMediaPlayerClosure()
         configureUIControls()
         configurePressedButtonEvents()
     }
-    
 }

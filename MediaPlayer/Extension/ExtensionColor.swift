@@ -17,7 +17,11 @@ extension UIColor {
     static let mp_loadLabelMessage = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
     static let mp_lightBlueGrey = UIColor(red: 191.0/255.0, green: 206.0/255.0, blue: 220.0/255.0, alpha: 1)
     static let mp_shadowMessage = UIColor(red: 0.0/255.0, green: 114.0/255.0, blue: 158.0/255.0, alpha: 1)
+    static let mp_imageShadow = UIColor(red: 140.0/255.0, green: 140.0/255.0, blue: 140.0/255.0, alpha: 1)
+    static let mp_messageColor = UIColor(red: 139.0/255.0, green: 211.0/255.0, blue: 200.0/255.0, alpha: 1)
+
 }
+
 
 
 
