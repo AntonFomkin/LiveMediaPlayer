@@ -17,8 +17,8 @@ final class AppStartManager {
     }
     
     func start() {
-      
-        window?.rootViewController = MediaPlayerVC()
+        let mediaPlayer = MediaPlayerFactory().getPlayer(type: .typeOne)
+        window?.rootViewController = MediaPlayerVC(mediaPlayer: mediaPlayer)
         window?.makeKeyAndVisible()
     }
     

@@ -1,19 +1,19 @@
 {
   "images" : [
     {
-      "scale" : "1x",
-      "filename" : "backArrow.png",
-      "idiom" : "universal"
-    },
-    {
-      "scale" : "2x",
       "idiom" : "universal",
-      "filename" : "backArrow@2x.png"
+      "filename" : "backArrow.png",
+      "scale" : "1x"
     },
     {
-      "scale" : "3x",
+      "idiom" : "universal",
+      "filename" : "backArrow@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
       "filename" : "backArrow@3x.png",
-      "idiom" : "universal"
+      "scale" : "3x"
     }
   ],
   "info" : {

@@ -13,8 +13,8 @@ final class ContainerImage: UIView {
     private(set) lazy var image: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "RelaxImage.png")
-        image.contentMode = .scaleAspectFill
+        image.image = UIImage(named: "Image.png")
+        image.contentMode = .scaleToFill
         
         return image
     }()
@@ -31,6 +31,8 @@ final class ContainerImage: UIView {
         
         self.addSubview(self.image)
         NSLayoutConstraint.activate([
+            self.image.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.image.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             self.image.heightAnchor.constraint(equalToConstant: self.frame.height),
             self.image.widthAnchor.constraint(equalToConstant: self.frame.width)
         ])
@@ -38,10 +40,10 @@ final class ContainerImage: UIView {
     
     override func draw(_ rect: CGRect) {
          
-        self.layer.shadowColor = UIColor.mp_lightBlueGrey.cgColor
-        self.layer.shadowOffset = CGSize(width: 7.0, height: 5.0)
-        self.layer.shadowRadius = 14.0
-        self.layer.shadowOpacity = 1
+        self.layer.shadowColor = UIColor.mp_imageShadow.cgColor 
+        self.layer.shadowOffset = CGSize(width: 5.0, height: 5.0)
+        self.layer.shadowRadius = 5.0 //14
+        self.layer.shadowOpacity = 0.5
     }
 }
 
